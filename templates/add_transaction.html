@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm giao dịch</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background: #f4f4f4;
+        }
+
+        .container{
+            width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, select{
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        button{
+            width: 100%;
+            padding: 10px;
+            background: rgb(208, 136, 148);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background: rgb(49, 164, 187);
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+
+<form method="POST" enctype="multipart/form-data">
+
+        <label>Thêm giao dịch</label>
+        <input type="text" name="title" required>
+
+      
+            <label>Số tiền</label>
+            <div class="money-box"></div>
+            <input type="number" name="amount" min="0" step="0.01" placeholder="Nhập số tiền" required>
+
+            <label>Danh mục</label>
+            <select name="category" required>
+        {% for c in categories %}
+                <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+             </select>
+
+            <label>Ngày giao dịch</label>
+            <input type="date" name="date" required>
+
+            <label>Loại giao dịch</label>
+
+            <select name="type" required>
+
+                <option value="income">Thu nhập</option>
+
+                <option value="expense">Chi tiêu</option>
+
+            </select>
+
+            <button type="submit">Lưu giao dịch</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

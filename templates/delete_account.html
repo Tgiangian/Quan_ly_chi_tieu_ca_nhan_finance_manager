@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow border-danger">
+
+        <div class="card-header bg-danger text-white">
+            Xóa tài khoản
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-warning">
+
+                <strong>Cảnh báo!</strong>
+
+                Hành động này sẽ xóa:
+
+                <ul class="mb-0 mt-2">
+                    <li>Tài khoản của bạn</li>
+                    <li>Toàn bộ giao dịch</li>
+                    <li>Dữ liệu tài chính</li>
+                </ul>
+
+                <strong>Dữ liệu không thể khôi phục.</strong>
+
+            </div>
+
+            <form method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Nhập lại mật khẩu
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Nhập DELETE để xác nhận
+                    </label>
+
+                    <input
+                        type="text"
+                        name="confirm_text"
+                        class="form-control"
+                        required>
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-danger">
+                    Xóa tài khoản
+                </button>
+
+                <a href="{{ url_for('transaction.dashboard') }}"
+                   class="btn btn-secondary">
+                    Hủy
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

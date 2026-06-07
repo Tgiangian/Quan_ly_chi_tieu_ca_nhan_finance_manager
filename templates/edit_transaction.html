@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Sửa giao dịch</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Tên giao dịch</label>
+        <input
+            type="text"
+            name="title"
+            class="form-control"
+            value="{{ transaction.title }}"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label>Số tiền</label>
+        <input
+            type="number"
+            name="amount"
+            class="form-control"
+            value="{{ transaction.amount }}"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label>Danh mục</label>
+        <input
+            type="text"
+            name="category"
+            class="form-control"
+            value="{{ transaction.category }}"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label>Loại giao dịch</label>
+
+        <select name="type" class="form-control">
+
+            <option value="income"
+            {% if transaction.type == 'income' %}selected{% endif %}>
+                Thu nhập
+            </option>
+
+            <option value="expense"
+            {% if transaction.type == 'expense' %}selected{% endif %}>
+                Chi tiêu
+            </option>
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Ngày giao dịch</label>
+
+        <input
+            type="date"
+            name="date"
+            class="form-control"
+            value="{{ transaction.date.strftime('%Y-%m-%d') }}"
+            required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Cập nhật
+    </button>
+
+    <a href="{{ url_for('transaction.dashboard') }}"
+       class="btn btn-secondary">
+        Hủy
+    </a>
+
+</form>
+
+{% endblock %}

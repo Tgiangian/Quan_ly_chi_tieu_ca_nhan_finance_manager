@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4 fw-bold text-primary">
+    ADMIN DASHBOARD
+</h2>
+
+<!-- Stats -->
+<div class="row mb-4">
+
+    <div class="col-md-3">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                <h5>Tổng người dùng</h5>
+                <h3>{{ total_users }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">
+                <h5>Tổng giao dịch</h5>
+                <h3>{{ total_transactions }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- USER LIST -->
+<div class="card shadow border-0">
+
+    <div class="card-body">
+
+        <h4 class="mb-3">Danh sách người dùng</h4>
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for user in users %}
+                <tr>
+
+                    <td>{{ user.id }}</td>
+                    <td class="fw-bold">{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+
+                    <td>
+                        {% if user.role == 'admin' %}
+                            <span class="badge bg-danger">ADMIN</span>
+                        {% else %}
+                            <span class="badge bg-secondary">USER</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+
+                        {% if user.id != current_user.id %}
+
+                            <!-- SET ADMIN -->
+                            {% if user.role != 'admin' %}
+                            <form action="{{ url_for('admin.make_admin', user_id=user.id) }}"
+                                  method="POST"
+                                  style="display:inline;">
+                                <button class="btn btn-sm btn-primary">
+                                    Set Admin
+                                </button>
+                            </form>
+                            {% endif %}
+
+                            <!-- NHƯỢNG QUYỀN -->
+                            {% if current_user.role == 'admin' and user.role != 'admin' %}
+                            <form action="{{ url_for('admin.transfer_admin', user_id=user.id) }}"
+                                  method="POST"
+                                  style="display:inline;">
+                                <button class="btn btn-sm btn-warning">
+                                    Nhượng quyền
+                                </button>
+                            </form>
+                            {% endif %}
+
+                            <!-- XÓA USER -->
+                            <form action="{{ url_for('admin.delete_user', user_id=user.id) }}"
+                                  method="POST"
+                                  style="display:inline;">
+                                <button class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Xóa user này?')">
+                                    Xóa
+                                </button>
+                            </form>
+
+                        {% else %}
+                            <span class="text-muted">Bạn</span>
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

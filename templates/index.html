@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finance Manager</title>
+</head>
+<body>
+
+<h1>Quản lí tài chính cá nhân</h1>
+
+<h3>Tổng thu: {{ total_income }} VND</h3>
+<h3>Tổng chi: {{ total_expense }} VND</h3>
+<h3>Số dư: {{ balance }} VND</h3>
+
+<br>
+
+<a href="{{ url_for('transaction.add_transaction') }}">
+    <button>+ Thêm giao dịch</button>
+</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Tên</th>
+        <th>Số tiền</th>
+        <th>Danh mục</th>
+        <th>Loại</th>
+    </tr>
+
+    {% for t in transactions %}
+    <tr>
+        <td>{{ t.title }}</td>
+
+        <td>
+            {% if t.type == 'income' %}
+                <span style="color:rgb(220, 127, 164)">+{{ "{:,.0f}".format(t.amount) }}</span>
+            {% else %}
+                <span style="color:rgb(219, 221, 121)">-{{ "{:,.0f}".format(t.amount) }}</span>
+            {% endif %}
+        </td>
+
+        <td>{{ t.category }}</td>
+
+        <td>{{ t.type }}</td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
+        

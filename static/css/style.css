@@ -1,0 +1,296 @@
+/* =========================
+   ROOT THEME
+========================= */
+:root{
+    --bg: #f4f7ff;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+
+    --primary: #4f7cff;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --soft-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    --radius: 18px;
+}
+
+/* =========================
+   BODY
+========================= */
+body{
+    font-family: "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container{
+    max-width: 1200px;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1,h2,h3{
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text);
+}
+
+/* =========================
+   NAVBAR (GLASS EFFECT)
+========================= */
+.navbar{
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--soft-shadow);
+}
+
+/* =========================
+   DASHBOARD CARDS (MODERN)
+========================= */
+.dashboard-card{
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    transition: 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card:hover{
+    transform: translateY(-6px);
+}
+
+/* subtle glow */
+.dashboard-card::before{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    filter: blur(40px);
+    top:-40px;
+    right:-40px;
+    opacity:0.3;
+}
+
+.income-card::before{ background: var(--success); }
+.expense-card::before{ background: var(--danger); }
+.balance-card::before{ background: var(--primary); }
+
+/* TEXT */
+.dashboard-card h3{
+    font-size:16px;
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+
+.dashboard-card h2{
+    font-size:32px;
+    font-weight: 800;
+    margin:0;
+}
+
+/* =========================
+   CARDS
+========================= */
+.card{
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--soft-shadow);
+}
+
+/* =========================
+   INPUT
+========================= */
+.form-control{
+    border-radius: 14px;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    transition: 0.2s;
+}
+
+.form-control:focus{
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79,124,255,0.15);
+}
+
+/* =========================
+   BUTTONS (CLEAN MODERN)
+========================= */
+.btn{
+    border-radius: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    transition: 0.2s;
+}
+
+.btn-primary{
+    background: var(--primary);
+    border: none;
+}
+
+.btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--soft-shadow);
+}
+
+.btn-success{
+    background: var(--success);
+    border: none;
+}
+
+.btn-danger{
+    background: var(--danger);
+    border: none;
+}
+
+.btn-warning{
+    background: var(--warning);
+    border: none;
+    color: white;
+}
+
+/* =========================
+   TABLE (MODERN CLEAN)
+========================= */
+.table{
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--soft-shadow);
+}
+
+.table thead{
+    background: #0f172a;
+    color: white;
+}
+
+.table tbody tr{
+    transition: 0.2s;
+}
+
+.table tbody tr:hover{
+    background: #f1f5ff;
+}
+
+/* =========================
+   BADGES
+========================= */
+.badge-income,
+.badge-expense{
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 12px;
+    color: white;
+}
+
+.badge-income{ background: var(--success); }
+.badge-expense{ background: var(--danger); }
+
+/* =========================
+   MONEY INPUT
+========================= */
+.money-box{
+    display:flex;
+}
+
+.money-box input{
+    border-radius: 14px 0 0 14px;
+}
+
+.money-box span{
+    background: #eef2ff;
+    padding: 10px 14px;
+    border-radius: 0 14px 14px 0;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* =========================
+   AUTH CARD
+========================= */
+.auth-card{
+    max-width: 420px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width:768px){
+    .dashboard-card{
+        margin-bottom: 16px;
+    }
+
+    h1{
+        font-size: 26px;
+    }
+
+    .table{
+        font-size: 14px;
+    }
+}
+
+/* ===== ACCOUNT DROPDOWN MENU ===== */
+
+/* dropdown wrapper */
+.dropdown {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* dropdown menu */
+.dropdown-menu {
+    min-width: 220px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    margin-top: 8px;
+
+    position: absolute;
+    z-index: 2000 !important;
+}
+
+/* item */
+.dropdown-item {
+    padding: 12px 18px;
+    transition: 0.25s;
+}
+
+/* hover item */
+.dropdown-item:hover {
+    background: #0d6efd;
+    color: white;
+}
+
+/* danger hover */
+.dropdown-item.text-danger:hover {
+    background: #dc3545;
+    color: white !important;
+}
+
+/* NAVBAR FIX */
+.navbar {
+    position: relative;
+    z-index: 1050;
+}
+
+/* CARD FIX (tránh che dropdown) */
+.card {
+    position: relative;
+    z-index: 1;
+    overflow: visible !important;
+}
