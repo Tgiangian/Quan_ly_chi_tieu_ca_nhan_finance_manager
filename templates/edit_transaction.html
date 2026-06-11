@@ -1,60 +1,78 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- kế thừa giao diện chung -->
 
-{% block content %}
+{% block content %} <!-- bắt đầu nội dung -->
 
-<h2>Sửa giao dịch</h2>
+<h2>Sửa giao dịch</h2> <!-- tiêu đề trang -->
 
-<form method="POST">
+<form method="POST"> <!-- tạo form gửi dữ liệu cập nhật -->
 
     <div class="mb-3">
+
         <label>Tên giao dịch</label>
+
         <input
             type="text"
             name="title"
             class="form-control"
             value="{{ transaction.title }}"
             required>
+        <!-- hiển thị tên giao dịch cũ để sửa -->
+
     </div>
 
     <div class="mb-3">
+
         <label>Số tiền</label>
+
         <input
             type="number"
             name="amount"
             class="form-control"
             value="{{ transaction.amount }}"
             required>
+        <!-- hiển thị số tiền cũ để sửa -->
+
     </div>
 
     <div class="mb-3">
+
         <label>Danh mục</label>
+
         <input
             type="text"
             name="category"
             class="form-control"
             value="{{ transaction.category }}"
             required>
+        <!-- hiển thị danh mục cũ để sửa -->
+
     </div>
 
     <div class="mb-3">
+
         <label>Loại giao dịch</label>
 
         <select name="type" class="form-control">
+        <!-- chọn loại giao dịch -->
 
             <option value="income"
             {% if transaction.type == 'income' %}selected{% endif %}>
                 Thu nhập
             </option>
+            <!-- nếu là thu nhập thì chọn sẵn -->
 
             <option value="expense"
             {% if transaction.type == 'expense' %}selected{% endif %}>
                 Chi tiêu
             </option>
+            <!-- nếu là chi tiêu thì chọn sẵn -->
 
         </select>
+
     </div>
 
     <div class="mb-3">
+
         <label>Ngày giao dịch</label>
 
         <input
@@ -63,17 +81,21 @@
             class="form-control"
             value="{{ transaction.date.strftime('%Y-%m-%d') }}"
             required>
+        <!-- hiển thị ngày giao dịch cũ để sửa -->
+
     </div>
 
     <button type="submit" class="btn btn-primary">
         Cập nhật
     </button>
+    <!-- gửi dữ liệu cập nhật -->
 
     <a href="{{ url_for('transaction.dashboard') }}"
        class="btn btn-secondary">
         Hủy
     </a>
+    <!-- quay về Dashboard -->
 
 </form>
 
-{% endblock %}
+{% endblock %} <!-- kết thúc nội dung -->

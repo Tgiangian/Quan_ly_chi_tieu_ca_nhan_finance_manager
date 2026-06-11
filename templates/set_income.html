@@ -1,33 +1,55 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- kế thừa giao diện chung -->
 
-{% block content %}
+{% block content %} <!-- bắt đầu nội dung -->
 
 <div class="card shadow">
+<!-- tạo khung chứa -->
 
     <div class="card-body">
+    <!-- phần nội dung của card -->
 
         <h3>Nhập thu nhập tháng</h3>
+        <!-- tiêu đề -->
 
         <form method="POST">
+        <!-- tạo form gửi dữ liệu -->
 
             <div class="mb-3">
 
-               
                 <div class="mb-3">
-    <label>Thu nhập hàng tháng</label>
-    <input type="number" name="income" class="form-control" required>
-</div>                       
 
-<div class="mb-3">
-    <label>Hạn mức chi tiêu</label>
-    <input type="number" name="budget" class="form-control" required>
-</div>
+                    <label>Thu nhập hàng tháng</label>
+
+                    <input
+                    type="number"
+                    name="income"
+                    class="form-control"
+                    required>
+                    <!-- nhập thu nhập tháng -->
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Hạn mức chi tiêu</label>
+
+                    <input
+                    type="number"
+                    name="budget"
+                    class="form-control"
+                    required>
+                    <!-- nhập hạn mức chi tiêu -->
+
+                </div>
 
             </div>
 
             <button class="btn btn-primary">
+
                 Lưu
+
             </button>
+            <!-- gửi dữ liệu lên server -->
 
         </form>
 
@@ -35,4 +57,4 @@
 
 </div>
 
-{% endblock %}
+{% endblock %} <!-- kết thúc nội dung -->

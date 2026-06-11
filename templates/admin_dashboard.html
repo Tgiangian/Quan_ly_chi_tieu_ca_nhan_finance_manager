@@ -1,19 +1,20 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- kế thừa giao diện từ base.html -->
+{% block content %}<!-- bắt đầu phần nội dung -->
 
-{% block content %}
 
-<h2 class="mb-4 fw-bold text-primary">
+<h2 class="mb-4 fw-bold text-primary">  <!-- tiêu đề trang quản trị -->
+</h2>
     ADMIN DASHBOARD
 </h2>
 
 <!-- Stats -->
-<div class="row mb-4">
+<div class="row mb-4"> <!-- tạo hàng chứa các thẻ thống kê -->
 
-    <div class="col-md-3">
-        <div class="card bg-primary text-white shadow">
+    <div class="col-md-3"> <!-- tạo cột -->
+        <div class="card bg-primary text-white shadow"> <!-- tạo card thống kê -->
             <div class="card-body">
-                <h5>Tổng người dùng</h5>
-                <h3>{{ total_users }}</h3>
+                <h5>Tổng người dùng</h5> <!-- tiêu đề -->
+                <h3>{{ total_users }}</h3> <!-- hiển thị tổng số người dùng -->
             </div>
         </div>
     </div>
@@ -21,8 +22,8 @@
     <div class="col-md-3">
         <div class="card bg-success text-white shadow">
             <div class="card-body">
-                <h5>Tổng giao dịch</h5>
-                <h3>{{ total_transactions }}</h3>
+                <h5>Tổng giao dịch</h5> <!-- tiêu đề -->
+                <h3>{{ total_transactions }}</h3> <!-- hiển thị tổng giao dịch -->
             </div>
         </div>
     </div>
@@ -30,15 +31,15 @@
 </div>
 
 <!-- USER LIST -->
-<div class="card shadow border-0">
+<div class="card shadow border-0"> <!-- tạo khung danh sách người dùng -->
 
     <div class="card-body">
 
-        <h4 class="mb-3">Danh sách người dùng</h4>
+        <h4 class="mb-3">Danh sách người dùng</h4> <!-- tiêu đề -->
 
-        <table class="table table-hover align-middle">
+        <table class="table table-hover align-middle"> <!-- tạo bảng -->
 
-            <thead class="table-dark">
+            <thead class="table-dark"> <!-- phần đầu bảng -->
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
@@ -48,40 +49,43 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody> <!-- phần nội dung bảng -->
 
-                {% for user in users %}
+                {% for user in users %} <!-- duyệt danh sách user -->
                 <tr>
 
-                    <td>{{ user.id }}</td>
-                    <td class="fw-bold">{{ user.username }}</td>
-                    <td>{{ user.email }}</td>
+                    <td>{{ user.id }}</td> <!-- hiển thị id -->
+                    <td class="fw-bold">{{ user.username }}</td> <!-- hiển thị username -->
+                    <td>{{ user.email }}</td> <!-- hiển thị email -->
+
 
                     <td>
-                        {% if user.role == 'admin' %}
-                            <span class="badge bg-danger">ADMIN</span>
+                        {% if user.role == 'admin' %} <!-- kiểm tra quyền -->
+                            <span class="badge bg-danger">ADMIN</span> <!-- hiển thị admin -->
                         {% else %}
-                            <span class="badge bg-secondary">USER</span>
+                            <span class="badge bg-secondary">USER</span> <!-- hiển thị user -->
+
                         {% endif %}
                     </td>
 
                     <td>
 
-                        {% if user.id != current_user.id %}
+                        {% if user.id != current_user.id %} <!-- không cho thao tác với chính mình -->
 
                             <!-- SET ADMIN -->
-                            {% if user.role != 'admin' %}
+                            {% if user.role != 'admin' %}  <!-- nếu chưa là admin -->
                             <form action="{{ url_for('admin.make_admin', user_id=user.id) }}"
                                   method="POST"
-                                  style="display:inline;">
+                                  style="display:inline;"> <!-- tạo form cấp quyền admin -->
                                 <button class="btn btn-sm btn-primary">
                                     Set Admin
                                 </button>
                             </form>
                             {% endif %}
 
-                            <!-- NHƯỢNG QUYỀN -->
-                            {% if current_user.role == 'admin' and user.role != 'admin' %}
+                            <!-- NHƯỢNG QUYỀN --> 
+                            {% if current_user.role == 'admin' and user.role != 'admin' %} <!-- kiểm tra điều kiện nhượng quyền -->
+
                             <form action="{{ url_for('admin.transfer_admin', user_id=user.id) }}"
                                   method="POST"
                                   style="display:inline;">
@@ -94,21 +98,24 @@
                             <!-- XÓA USER -->
                             <form action="{{ url_for('admin.delete_user', user_id=user.id) }}"
                                   method="POST"
-                                  style="display:inline;">
+                                  style="display:inline;"> <!-- tạo form xóa user -->
                                 <button class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Xóa user này?')">
+                                        onclick="return confirm('Xóa user này?')"> <!-- hỏi xác nhận -->
                                     Xóa
                                 </button>
                             </form>
 
                         {% else %}
-                            <span class="text-muted">Bạn</span>
-                        {% endif %}
+                            <span class="text-muted">Bạn</span> <!-- đánh dấu tài khoản hiện tại -->
+
+                        {% endif %} 
+
 
                     </td>
 
                 </tr>
-                {% endfor %}
+                {% endfor %} <!-- kết thúc vòng lặp -->
+
 
             </tbody>
 
@@ -118,4 +125,4 @@
 
 </div>
 
-{% endblock %}
+{% endblock %} <!-- kết thúc phần nội dung -->

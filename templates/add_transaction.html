@@ -1,23 +1,27 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm giao dịch</title>
+<!DOCTYPE html> <!-- khai báo tài liệu HTML5 -->
+<html lang="vi"> <!-- bắt đầu trang web, ngôn ngữ tiếng Việt -->
 
-    <style>
+<head> <!-- phần khai báo thông tin trang web -->
+
+    <meta charset="UTF-8"> <!-- hỗ trợ hiển thị tiếng Việt -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- tối ưu hiển thị trên điện thoại -->
+
+    <title>Thêm giao dịch</title> <!-- tiêu đề trang web -->
+
+
+    <style> 
 
         body{
-            font-family: Arial;
-            background: #f4f4f4;
+            font-family: Arial; /* thiết lập font chữ */
+            background: #f4f4f4;/* màu nền */
         }
 
         .container{
-            width: 400px;
-            margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
+            width: 400px; /* chiều rộng khung */
+            margin: 50px auto;/* căn giữa */
+            background: white;/* màu nền */
+            padding: 20px;/* khoảng cách bên trong */
+            border-radius: 10px; /* bo góc */
         }
 
         input, select{
@@ -43,42 +47,45 @@
     </style>
 
 </head>
-<body>
+<body> <!-- bắt đầu phần nội dung -->
 
-    <div class="container">
+    <div class="container"> <!-- tạo khung chứa form -->
 
 
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data"> <!-- tạo form gửi dữ liệu bằng POST -->
 
-        <label>Thêm giao dịch</label>
-        <input type="text" name="title" required>
+
+        <label>Thêm giao dịch</label> <!-- tiêu đề -->
+        <input type="text" name="title" required> 
 
       
-            <label>Số tiền</label>
-            <div class="money-box"></div>
-            <input type="number" name="amount" min="0" step="0.01" placeholder="Nhập số tiền" required>
+            <label>Số tiền</label> <!-- nhãn số tiền -->
+            <div class="money-box"></div> <!-- vùng hiển thị tiền -->
+            <input type="number" name="amount" min="0" step="0.01" placeholder="Nhập số tiền" required> <!-- nhập số tiền -->
 
-            <label>Danh mục</label>
-            <select name="category" required>
-        {% for c in categories %}
-                <option value="{{ c }}">{{ c }}</option>
-        {% endfor %}
+            <label>Danh mục</label> <!-- nhập số tiền -->
+            <select name="category" required> <!-- danh sách danh mục -->
+        {% for c in categories %} <!-- duyệt danh sách categories -->
+                <option value="{{ c }}">{{ c }}</option> <!-- duyệt danh sách categories -->
+        {% endfor %} <!-- duyệt danh sách categories -->
              </select>
 
-            <label>Ngày giao dịch</label>
-            <input type="date" name="date" required>
+            <label>Ngày giao dịch</label><!-- nhãn ngày giao dịch -->
+            <input type="date" name="date" required> <!-- chọn ngày -->
 
-            <label>Loại giao dịch</label>
 
-            <select name="type" required>
+            <label>Loại giao dịch</label><!-- nhãn loại giao dịch -->
 
-                <option value="income">Thu nhập</option>
 
-                <option value="expense">Chi tiêu</option>
+            <select name="type" required> <!-- chọn loại giao dịch -->
+
+                <option value="income">Thu nhập</option> <!-- giao dịch thu -->
+
+                <option value="expense">Chi tiêu</option><!-- giao dịch chi -->
 
             </select>
 
-            <button type="submit">Lưu giao dịch</button>
+            <button type="submit">Lưu giao dịch</button><!-- nút gửi form -->
 
         </form>
 

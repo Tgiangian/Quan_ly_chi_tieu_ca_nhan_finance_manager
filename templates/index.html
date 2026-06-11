@@ -1,53 +1,103 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Finance Manager</title>
-</head>
-<body>
+<!DOCTYPE html> <!-- khai báo tài liệu HTML5 -->
 
-<h1>Quản lí tài chính cá nhân</h1>
+<html> <!-- bắt đầu trang web -->
+
+<head> <!-- phần khai báo -->
+
+    <title>Finance Manager</title> <!-- tiêu đề của trang -->
+
+</head>
+
+<body> <!-- bắt đầu phần nội dung -->
+
+<h1>Quản lí tài chính cá nhân</h1> <!-- tiêu đề chính -->
 
 <h3>Tổng thu: {{ total_income }} VND</h3>
+<!-- hiển thị tổng thu nhập -->
+
 <h3>Tổng chi: {{ total_expense }} VND</h3>
+<!-- hiển thị tổng chi tiêu -->
+
 <h3>Số dư: {{ balance }} VND</h3>
+<!-- hiển thị số dư -->
 
 <br>
 
 <a href="{{ url_for('transaction.add_transaction') }}">
-    <button>+ Thêm giao dịch</button>
+<!-- tạo liên kết đến trang thêm giao dịch -->
+
+    <button>
+
+        + Thêm giao dịch
+
+    </button>
+    <!-- nút chuyển sang trang thêm giao dịch -->
+
 </a>
 
 <br><br>
 
 <table border="1" cellpadding="10">
+<!-- tạo bảng hiển thị danh sách giao dịch -->
+
     <tr>
+
         <th>Tên</th>
+
         <th>Số tiền</th>
+
         <th>Danh mục</th>
+
         <th>Loại</th>
+
     </tr>
+    <!-- tiêu đề các cột -->
 
     {% for t in transactions %}
+    <!-- duyệt từng giao dịch -->
+
     <tr>
+
         <td>{{ t.title }}</td>
+        <!-- hiển thị tên giao dịch -->
 
         <td>
+
             {% if t.type == 'income' %}
-                <span style="color:rgb(220, 127, 164)">+{{ "{:,.0f}".format(t.amount) }}</span>
+            <!-- nếu là thu nhập -->
+
+                <span style="color:rgb(220, 127, 164)">
+
+                    +{{ "{:,.0f}".format(t.amount) }}
+
+                </span>
+
             {% else %}
-                <span style="color:rgb(219, 221, 121)">-{{ "{:,.0f}".format(t.amount) }}</span>
+            <!-- nếu là chi tiêu -->
+
+                <span style="color:rgb(219, 221, 121)">
+
+                    -{{ "{:,.0f}".format(t.amount) }}
+
+                </span>
+
             {% endif %}
+
         </td>
 
         <td>{{ t.category }}</td>
+        <!-- hiển thị danh mục -->
 
         <td>{{ t.type }}</td>
+        <!-- hiển thị loại giao dịch -->
 
     </tr>
+
     {% endfor %}
+    <!-- kết thúc vòng lặp -->
 
 </table>
 
 </body>
+
 </html>
-        

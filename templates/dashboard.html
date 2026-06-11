@@ -1,71 +1,99 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- kế thừa giao diện từ base.html -->
 
-{% block content %}
+{% block content %} <!-- bắt đầu nội dung -->
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4"> <!-- tạo thanh tiêu đề -->
 
     <h2 class="fw-bold mb-0">
         Quản lí tài chính cá nhân
-    </h2>
+    </h2> <!-- tiêu đề -->
 
-    <div class="d-flex gap-2">
+    <div class="d-flex gap-2"> <!-- nhóm nút chức năng -->
 
         <a href="{{ url_for('transaction.set_income') }}"
            class="btn btn-primary">
             Cập nhật thu nhập
-        </a>
+        </a> <!-- chuyển đến trang cập nhật thu nhập -->
 
-        {% if current_user.role == 'admin' %}
+        {% if current_user.role == 'admin' %} <!-- kiểm tra admin -->
+
         <a href="{{ url_for('admin.dashboard') }}"
            class="btn btn-dark">
+
             Admin
-        </a>
+
+        </a> <!-- chuyển đến trang quản trị -->
+
         {% endif %}
 
     </div>
 
 </div>
 
-{% if budget_warning %}
+{% if budget_warning %} <!-- kiểm tra có cảnh báo -->
+
 <div class="alert {% if total_expense >= budget_limit %}alert-danger{% else %}alert-warning{% endif %}">
     {{ budget_warning }}
-</div>
+</div> <!-- hiển thị cảnh báo -->
+
 {% endif %}
 
-<!-- ================= DASHBOARD STATS ================= -->
-<div class="row g-3 mb-4">
+<!-- DASHBOARD STATS -->
+
+<div class="row g-3 mb-4"> <!-- tạo hàng chứa thống kê -->
 
     <div class="col-md-3">
+
         <div class="dashboard-card income-card">
+
             <h3>Thu nhập tháng</h3>
+
             <h2>{{ "{:,.0f}".format(monthly_income) }} VNĐ</h2>
+
         </div>
-    </div>
+
+    </div> <!-- hiển thị thu nhập -->
 
     <div class="col-md-3">
+
         <div class="dashboard-card expense-card">
+
             <h3>Tổng chi</h3>
+
             <h2>{{ "{:,.0f}".format(total_expense) }} VNĐ</h2>
+
         </div>
-    </div>
+
+    </div> <!-- hiển thị tổng chi -->
 
     <div class="col-md-3">
+
         <div class="dashboard-card balance-card">
+
             <h3>Số dư</h3>
+
             <h2>{{ "{:,.0f}".format(balance) }} VNĐ</h2>
+
         </div>
-    </div>
+
+    </div> <!-- hiển thị số dư -->
 
     <div class="col-md-3">
+
         <div class="dashboard-card">
+
             <h3>Hạn mức</h3>
+
             <h2>{{ "{:,.0f}".format(budget_limit) }} VNĐ</h2>
+
         </div>
-    </div>
+
+    </div> <!-- hiển thị hạn mức -->
 
 </div>
 
-<!-- ================= PROGRESS ================= -->
+<!-- THANH THEO DÕI CHI TIÊU -->
+
 <div class="card p-3 mb-4">
 
     <h5 class="mb-3">Theo dõi hạn mức chi tiêu</h5>
@@ -75,104 +103,159 @@
     {% else %}
         {% set percent = 0 %}
     {% endif %}
+    <!-- tính phần trăm đã sử dụng -->
 
     {% set progress_width = 100 if percent > 100 else percent %}
- 
-    <div class="progress" style="height: 25px;">
-    <div class="progress-bar
-        {% if percent >= 100 %} bg-danger
-        {% elif percent >= 80 %} bg-warning
+    <!-- giới hạn thanh tối đa 100% -->
+
+    <div class="progress" style="height:25px;">
+
+        <div class="progress-bar
+
+        {% if percent >=100 %} bg-danger
+        {% elif percent >=80 %} bg-warning
         {% else %} bg-success
         {% endif %}"
+
         style="width: {{ progress_width }}%;">
+
         {{ percent|round|int }}%
-    </div>
-</div>
+
+        </div>
+
+    </div> <!-- thanh tiến độ -->
 
     <p class="mt-3 mb-0">
-        Đã chi: <strong>{{ "{:,.0f}".format(total_expense) }} VNĐ</strong>
+
+        Đã chi:
+        <strong>{{ "{:,.0f}".format(total_expense) }} VNĐ</strong>
+
         /
+
         {{ "{:,.0f}".format(budget_limit) }} VNĐ
+
     </p>
 
-    {% if percent >= 100 %}
-        <div class="alert alert-danger mt-3">
-            Bạn đã vượt hạn mức chi tiêu!
-        </div>
-    {% elif percent >= 80 %}
-        <div class="alert alert-warning mt-3">
-            Bạn đã sử dụng {{ percent|round|int }}% hạn mức.
-        </div>
+    <!-- hiển thị số tiền đã sử dụng -->
+
+    {% if percent >=100 %}
+
+    <div class="alert alert-danger mt-3">
+
+        Bạn đã vượt hạn mức chi tiêu!
+
+    </div>
+
+    {% elif percent >=80 %}
+
+    <div class="alert alert-warning mt-3">
+
+        Bạn đã sử dụng {{ percent|round|int }}% hạn mức.
+
+    </div>
+
     {% endif %}
 
 </div>
 
-<!-- ================= TRANSACTION HISTORY ================= -->
+<!-- LỊCH SỬ GIAO DỊCH -->
+
 <div class="card p-3">
 
     <h5 class="mb-3">Lịch sử giao dịch</h5>
 
-    {% if transactions %}
+    {% if transactions %} <!-- kiểm tra có giao dịch -->
 
     <table class="table table-hover align-middle">
+
         <thead>
+
             <tr>
+
                 <th>Mục đích</th>
                 <th>Số tiền</th>
                 <th>Danh mục</th>
                 <th>Loại</th>
                 <th>Ngày</th>
                 <th>Thao tác</th>
+
             </tr>
+
         </thead>
 
         <tbody>
-        {% for t in transactions %}
-            <tr>
-                <td>{{ t.title }}</td>
 
-                <td>
-                    {% if t.type == 'income' %}
-                        <span class="text-success fw-bold">
-                            +{{ "{:,.0f}".format(t.amount) }}
-                        </span>
-                    {% else %}
-                        <span class="text-danger fw-bold">
-                            -{{ "{:,.0f}".format(t.amount) }}
-                        </span>
-                    {% endif %}
-                </td>
+        {% for t in transactions %} <!-- duyệt danh sách giao dịch -->
 
-                <td>{{ t.category }}</td>
-                <td>{{ t.type }}</td>
-                <td>{{ t.date }}</td>
+        <tr>
 
-                <td class="d-flex gap-2">
-                    <a href="{{ url_for('transaction.edit_transaction', id=t.id) }}"
-                       class="btn btn-sm btn-warning">
-                        Sửa
-                    </a>
+            <td>{{ t.title }}</td>
 
-                    <a href="{{ url_for('transaction.delete_transaction', id=t.id) }}"
-                       class="btn btn-sm btn-danger"
-                       onclick="return confirm('Bạn có chắc muốn xóa?')">
-                        Xóa
-                    </a>
-                </td>
-            </tr>
+            <td>
+
+            {% if t.type == 'income' %}
+
+                <span class="text-success fw-bold">
+
+                +{{ "{:,.0f}".format(t.amount) }}
+
+                </span>
+
+            {% else %}
+
+                <span class="text-danger fw-bold">
+
+                -{{ "{:,.0f}".format(t.amount) }}
+
+                </span>
+
+            {% endif %}
+
+            </td> <!-- hiển thị số tiền -->
+
+            <td>{{ t.category }}</td>
+
+            <td>{{ t.type }}</td>
+
+            <td>{{ t.date }}</td>
+
+            <td class="d-flex gap-2">
+
+                <a href="{{ url_for('transaction.edit_transaction', id=t.id) }}"
+                   class="btn btn-sm btn-warning">
+
+                    Sửa
+
+                </a> <!-- sửa giao dịch -->
+
+                <a href="{{ url_for('transaction.delete_transaction', id=t.id) }}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Bạn có chắc muốn xóa?')">
+
+                    Xóa
+
+                </a> <!-- xóa giao dịch -->
+
+            </td>
+
+        </tr>
+
         {% endfor %}
+
         </tbody>
 
     </table>
 
     {% else %}
-        <div class="alert alert-info">
-            Chưa có giao dịch nào.
-        </div>
+
+    <div class="alert alert-info">
+
+        Chưa có giao dịch nào.
+
+    </div> <!-- thông báo chưa có dữ liệu -->
+
     {% endif %}
 
 </div>
 
-{% endblock %}
-
-
+{% endblock %} <!-- kết thúc nội dung -->

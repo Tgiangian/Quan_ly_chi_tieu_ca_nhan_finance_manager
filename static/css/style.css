@@ -1,75 +1,75 @@
 /* =========================
-   ROOT THEME
+   ROOT THEME : khai báo biến màu sác và giao diện chung
 ========================= */
-:root{
-    --bg: #f4f7ff;
-    --card: #ffffff;
-    --text: #1e293b;
-    --muted: #64748b;
+:root{/*khai báo biến màu sác , bo góc , đổ bóng dùng chung toàn web */
+    --bg: #f4f7ff; /*màu nền*/
+    --card: #ffffff;/* màu thẻ*/
+    --text: #1e293b; /* màu chữ */
+    --muted: #64748b; /*màu chữ phụ */
 
-    --primary: #4f7cff;
-    --success: #22c55e;
-    --danger: #ef4444;
-    --warning: #f59e0b;
+    --primary: #4f7cff;/* màu chính*/
+    --success: #22c55e;/* màu thành công*/
+    --danger: #ef4444;/* màu báo lỗi */
+    --warning: #f59e0b;/*màu cảnh báo */
 
-    --shadow: 0 10px 30px rgba(0,0,0,0.08);
-    --soft-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    --radius: 18px;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);/* đỏ bóng lớn */
+    --soft-shadow: 0 6px 18px rgba(0,0,0,0.06);/* đỏ bóng nhẹ */
+    --radius: 18px;/*bo góc*/
 }
 
 /* =========================
-   BODY
+   BODY: giao diện toàn trang
 ========================= */
-body{
-    font-family: "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--text);
+body{/*thiết lập font chữ , màu nền và màu chữ toàn trang*/
+    font-family: "Segoe UI", sans-serif;/* font chữ */
+    background: var(--bg);/*màu nền*/
+    color: var(--text);/* màu chữ */
 }
 
 /* =========================
-   CONTAINER
+   CONTAINER : khung chứa ndung
 ========================= */
-.container{
-    max-width: 1200px;
+.container{/*giới hạn chiều rộng tối da của nội dung*/
+    max-width: 1200px;/* chiều rộng tối đa */
 }
 
 /* =========================
-   HEADINGS
+   HEADINGS : tiêu đề
 ========================= */
-h1,h2,h3{
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: var(--text);
+h1,h2,h3{/*định dạng tiêu đề*/
+    font-weight: 800;/* chữ đậm */
+    letter-spacing: -0.5px;/*khoảng cách chữ*/
+    color: var(--text);/* màu chữ */
 }
 
 /* =========================
-   NAVBAR (GLASS EFFECT)
+   NAVBAR (GLASS EFFECT) : thanh điều hướng
 ========================= */
-.navbar{
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(10px);
-    box-shadow: var(--soft-shadow);
+.navbar{/*tạo thanh điều hướng hiệu ứng mờ*/
+    background: rgba(255,255,255,0.8);/* nền trong suốt */
+    backdrop-filter: blur(10px);/* hiệu ứng kính mờ */
+    box-shadow: var(--soft-shadow);/* đổ bóng */
 }
 
 /* =========================
-   DASHBOARD CARDS (MODERN)
+   DASHBOARD CARDS (MODERN):thẻ thông tin
 ========================= */
-.dashboard-card{
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 24px;
-    box-shadow: var(--shadow);
-    transition: 0.25s ease;
+.dashboard-card{ /*tke thẻ thống kê trên dashboard */
+    background: var(--card); /*nền thẻ */
+    border-radius: var(--radius);/* bo góc */
+    padding: 24px;/* */
+    box-shadow: var(--shadow);/*khoảng cách bên trong*/
+    transition: 0.25s ease;/*hiệu ứng*/
     position: relative;
     overflow: hidden;
 }
 
-.dashboard-card:hover{
-    transform: translateY(-6px);
+.dashboard-card:hover{/*tạo hiệu ứng nổi lên khi rê chuột*/
+    transform: translateY(-6px);/*di chuyển lên khi rê chuột */
 }
 
-/* subtle glow */
-.dashboard-card::before{
+/* subtle glow : hiệu ứng ánh sáng */
+.dashboard-card::before{/*tạo hiệu ứng ánh sáng mờ phía sau card */
     content:"";
     position:absolute;
     width:120px;
@@ -81,79 +81,79 @@ h1,h2,h3{
     opacity:0.3;
 }
 
-.income-card::before{ background: var(--success); }
-.expense-card::before{ background: var(--danger); }
-.balance-card::before{ background: var(--primary); }
+.income-card::before{ background: var(--success);/* màu thu thập */ }
+.expense-card::before{ background: var(--danger);/* màu chi tiêu */ }
+.balance-card::before{ background: var(--primary);/*màu số dư */ }
 
-/* TEXT */
-.dashboard-card h3{
+/* TEXT : chữ trong dashboard  */
+.dashboard-card h3{/*định dạng tiêu đề cảd*/
     font-size:16px;
     color: var(--muted);
     margin-bottom: 10px;
 }
 
-.dashboard-card h2{
+.dashboard-card h2{/*định dạng số liệu card*/
     font-size:32px;
     font-weight: 800;
     margin:0;
 }
 
 /* =========================
-   CARDS
+   CARDS: thẻ
 ========================= */
-.card{
-    border: none;
-    border-radius: var(--radius);
-    box-shadow: var(--soft-shadow);
+.card{/*tke khung card chung*/
+    border: none;/* bỏ viền */
+    border-radius: var(--radius);/* bo góc */
+    box-shadow: var(--soft-shadow);/* viền */
 }
 
 /* =========================
-   INPUT
+   INPUT :
 ========================= */
-.form-control{
-    border-radius: 14px;
-    padding: 12px;
-    border: 1px solid #e2e8f0;
+.form-control{/*tke ô nhập liệu*/
+    border-radius: 14px;/*bo góc */
+    padding: 12px;/* khoảng cách */
+    border: 1px solid #e2e8f0;/*viền */
     transition: 0.2s;
 }
 
-.form-control:focus{
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(79,124,255,0.15);
+.form-control:focus{/*hiệu ứng khi dùng cho ô nhập*/
+    border-color: var(--primary);/* đổi màu khi chọn */
+    box-shadow: 0 0 0 4px rgba(79,124,255,0.15); /*hiệu ứng*/
 }
 
 /* =========================
    BUTTONS (CLEAN MODERN)
 ========================= */
-.btn{
-    border-radius: 14px;
+.btn{/*thiết kế nút bấm chung*/
+    border-radius: 14px;/*bo góc*/
     font-weight: 600;
     padding: 10px 16px;
     transition: 0.2s;
 }
 
-.btn-primary{
-    background: var(--primary);
+.btn-primary{/*nút chức năng chính*/
+    background: var(--primary);/* nút chính */
     border: none;
 }
 
-.btn-primary:hover{
-    transform: translateY(-2px);
+.btn-primary:hover{/*hiệu ứng hover nút chính*/
+    transform: translateY(-2px);/*hiệu ứng hover */
     box-shadow: var(--soft-shadow);
 }
 
-.btn-success{
-    background: var(--success);
+.btn-success{/*nút thành công*/
+    background: var(--success);/*nút thành công*/
     border: none;
 }
 
-.btn-danger{
-    background: var(--danger);
+.btn-danger{/*nút xóa hoạc lỗi*/
+    background: var(--danger);/*nút xóa */
     border: none;
 }
 
-.btn-warning{
-    background: var(--warning);
+.btn-warning{/*nút cảnh báo*/
+    background: var(--warning);/*nút cảnh báo */
     border: none;
     color: white;
 }
@@ -161,31 +161,31 @@ h1,h2,h3{
 /* =========================
    TABLE (MODERN CLEAN)
 ========================= */
-.table{
+.table{/*thiết kế bảng dữ liệu*/
     background: white;
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--soft-shadow);
 }
 
-.table thead{
-    background: #0f172a;
+.table thead{/*định dạng phần tiêu đề bảng*/
+    background: #0f172a;/*màu tiêu đề bảng*/
     color: white;
 }
 
-.table tbody tr{
+.table tbody tr{/*hiệu ứng cho từng dòng*/
     transition: 0.2s;
 }
 
-.table tbody tr:hover{
-    background: #f1f5ff;
+.table tbody tr:hover{/*đổi màu dòng khi rê chuột*/
+    background: #f1f5ff;/*ddoooir màu khi rê chuột*/
 }
 
 /* =========================
    BADGES
 ========================= */
-.badge-income,
-.badge-expense{
+.badge-income,/*nhãn thu nhập*/
+.badge-expense{/*nhãn chi tiêu*/
     padding: 6px 12px;
     border-radius: 999px;
     font-weight: 600;
@@ -193,21 +193,21 @@ h1,h2,h3{
     color: white;
 }
 
-.badge-income{ background: var(--success); }
-.badge-expense{ background: var(--danger); }
+.badge-income{ background: var(--success);/*badge thu*/ }
+.badge-expense{ background: var(--danger);/*badge chi */ }
 
 /* =========================
    MONEY INPUT
 ========================= */
-.money-box{
-    display:flex;
+.money-box{/*nhóm ô nhập tiền và đơn vị tiền tệ */
+    display:flex;/*hiển thị ngang*/
 }
 
-.money-box input{
-    border-radius: 14px 0 0 14px;
+.money-box input{/*định dạng ô nhập tiền*/
+    border-radius: 14px 0 0 14px;/*bo goác trái*/
 }
 
-.money-box span{
+.money-box span{ /*định dạng phần hthi đơn vị tiền*/
     background: #eef2ff;
     padding: 10px 14px;
     border-radius: 0 14px 14px 0;
@@ -218,9 +218,9 @@ h1,h2,h3{
 /* =========================
    AUTH CARD
 ========================= */
-.auth-card{
-    max-width: 420px;
-    margin: 60px auto;
+.auth-card{/*khung giao diện đang nhập , đăng ký*/
+    max-width: 420px;/*chiều rộng*/
+    margin: 60px auto;/*căn giữa*/
     background: white;
     padding: 30px;
     border-radius: var(--radius);
@@ -230,67 +230,67 @@ h1,h2,h3{
 /* =========================
    RESPONSIVE
 ========================= */
-@media (max-width:768px){
+@media (max-width:768px){/*tối ưu giao diện trên điện thoại và table*/
     .dashboard-card{
-        margin-bottom: 16px;
+        margin-bottom: 16px;/* khoảng cách giữa các card  */
     }
 
     h1{
-        font-size: 26px;
+        font-size: 26px;/*giảm kich cỡ chữ*/
     }
 
     .table{
-        font-size: 14px;
+        font-size: 14px;/*giảm kích thước bảng*/
     }
 }
 
 /* ===== ACCOUNT DROPDOWN MENU ===== */
 
 /* dropdown wrapper */
-.dropdown {
-    position: relative;
+.dropdown {/*vừng chứa menu tài khoản*/
+    position: relative;/*làm khung cho menu*/
     overflow: visible !important;
 }
 
 /* dropdown menu */
-.dropdown-menu {
-    min-width: 220px;
+.dropdown-menu {/*tke menu xổ xuống*/
+    min-width: 220px;/*chiều rộng tối thiểu*/
     border: none;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     margin-top: 8px;
 
     position: absolute;
-    z-index: 2000 !important;
+    z-index: 2000 !important;/*hthi trên cùng*/
 }
 
 /* item */
-.dropdown-item {
-    padding: 12px 18px;
+.dropdown-item {/*định dạng từng mục trong menu*/
+    padding: 12px 18px;/*khoảng cách*/
     transition: 0.25s;
 }
 
 /* hover item */
-.dropdown-item:hover {
-    background: #0d6efd;
+.dropdown-item:hover {/*hiệu ứng khi rê chuột vào menu*/
+    background: #0d6efd;/*đổi màu khi rê chuột*/
     color: white;
 }
 
 /* danger hover */
-.dropdown-item.text-danger:hover {
-    background: #dc3545;
+.dropdown-item.text-danger:hover {/*hiệu ứng cho mục nguy hiểm như xóa tài khoản*/
+    background: #dc3545;/*màu đỏ cho nút nguy hiểm*/
     color: white !important;
 }
 
 /* NAVBAR FIX */
-.navbar {
+.navbar {/*đảm bải navbar luôn nằm trên các thành phần khác*/
     position: relative;
-    z-index: 1050;
+    z-index: 1050;/*tránh bị che*/
 }
 
 /* CARD FIX (tránh che dropdown) */
-.card {
+.card {/*tránh card che mất menu dropdown */
     position: relative;
     z-index: 1;
-    overflow: visible !important;
+    overflow: visible !important;/*tránh che dropdown */
 }

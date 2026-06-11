@@ -1,49 +1,62 @@
-<!DOCTYPE html>
-<html lang="vi">
+<!DOCTYPE html> <!-- khai báo tài liệu HTML5 -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="vi"> <!-- bắt đầu trang web, ngôn ngữ tiếng Việt -->
 
-    <title>Finance Manager</title>
+<head> <!-- phần khai báo thông tin -->
 
-    <!-- FAVICON (CHUẨN - HIỆN TẤT CẢ TRANG) -->
-    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}?v=2" type="image/png">
+    <meta charset="UTF-8"> <!-- hỗ trợ hiển thị tiếng Việt -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- tối ưu hiển thị trên điện thoại -->
+
+    <title>Finance Manager</title> <!-- tiêu đề trang web -->
+
+    <!-- FAVICON -->
+    <link rel="icon"
+          href="{{ url_for('static', filename='images/logo.png') }}?v=2"
+          type="image/png"> <!-- hiển thị logo trên tab trình duyệt -->
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+          rel="stylesheet"> <!-- import Bootstrap -->
 
     <!-- CSS -->
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+          href="{{ url_for('static', filename='css/style.css') }}"> <!-- liên kết file CSS -->
+
 </head>
 
-<body class="bg-light">
+<body class="bg-light"> <!-- bắt đầu phần thân trang web -->
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- tạo thanh điều hướng -->
+
+        <div class="container"> <!-- tạo vùng chứa -->
 
             <a class="navbar-brand fw-bold"
                href="{{ url_for('transaction.dashboard') }}">
                 Finance Manager
-            </a>
+            </a> <!-- logo và chuyển về dashboard -->
 
-            <div class="d-flex ms-auto align-items-center gap-2">
+            <div class="d-flex ms-auto align-items-center gap-2"> <!-- nhóm các nút chức năng -->
 
                 <a href="{{ url_for('transaction.dashboard') }}"
                    class="btn btn-outline-light">
+
                     Dashboard
-                </a>
+
+                </a> <!-- nút chuyển đến dashboard -->
 
                 <a href="{{ url_for('transaction.add_transaction') }}"
                    class="btn btn-success">
+
                     Thêm giao dịch
-                </a>
+
+                </a> <!-- nút thêm giao dịch -->
 
                 <!-- DROPDOWN -->
-                <div class="dropdown">
+
+                <div class="dropdown"> <!-- tạo menu tài khoản -->
 
                     <button class="btn btn-outline-light dropdown-toggle"
                             type="button"
@@ -52,71 +65,104 @@
 
                         👤 {{ current_user.username }}
 
-                    </button>
+                    </button> <!-- hiển thị tên người dùng -->
 
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-end"> <!-- menu xổ xuống -->
 
                         <li>
+
                             <a class="dropdown-item"
                                href="{{ url_for('auth.change_password') }}">
+
                                 Đổi mật khẩu
+
                             </a>
-                        </li>
+
+                        </li> <!-- chức năng đổi mật khẩu -->
 
                         <li>
+
                             <a class="dropdown-item text-danger"
                                href="{{ url_for('auth.delete_account') }}">
-                                Xóa tài khoản
-                            </a>
-                        </li>
 
-                        <li><hr class="dropdown-divider"></li>
+                                Xóa tài khoản
+
+                            </a>
+
+                        </li> <!-- chức năng xóa tài khoản -->
 
                         <li>
+
+                            <hr class="dropdown-divider">
+
+                        </li> <!-- đường phân cách -->
+
+                        <li>
+
                             <a class="dropdown-item"
                                href="{{ url_for('auth.logout') }}">
+
                                 Đăng xuất
+
                             </a>
-                        </li>
+
+                        </li> <!-- chức năng đăng xuất -->
 
                     </ul>
 
                 </div>
 
             </div>
+
         </div>
+
     </nav>
 
     <!-- CONTAINER -->
-    <div class="container mt-4">
+
+    <div class="container mt-4"> <!-- vùng chứa nội dung -->
 
         <!-- FLASH MESSAGE -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %} <!-- lấy thông báo -->
+
+            {% if messages %} <!-- kiểm tra có thông báo không -->
+
+                {% for category, message in messages %} <!-- duyệt từng thông báo -->
+
                     <div class="alert alert-{{ category }} alert-dismissible fade show"
                          role="alert">
 
-                        {{ message }}
+                        {{ message }} <!-- hiển thị nội dung -->
 
                         <button type="button"
                                 class="btn-close"
                                 data-bs-dismiss="alert">
-                        </button>
+
+                        </button> <!-- nút đóng thông báo -->
 
                     </div>
+
                 {% endfor %}
+
             {% endif %}
+
         {% endwith %}
 
         <!-- CONTENT -->
+
         {% block content %}
+
         {% endblock %}
+
+        <!-- vị trí các trang con chèn nội dung -->
 
     </div>
 
     <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- import Bootstrap JavaScript -->
 
 </body>
 
